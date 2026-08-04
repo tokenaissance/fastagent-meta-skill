@@ -31,7 +31,7 @@ class FakeRunner:
         if args[:4] == ["git", "remote", "get-url", "origin"]:
             return PUBLISH.CommandResult(args, 2, "", "no origin")
         if args[:3] == ["gh", "api", "user"]:
-            return PUBLISH.CommandResult(args, 0, "joeseesun", "")
+            return PUBLISH.CommandResult(args, 0, "tokenaissance", "")
         if args[:3] == ["gh", "repo", "view"]:
             return PUBLISH.CommandResult(args, 1, "", "not found")
         return PUBLISH.CommandResult(args, 0, "ok", "")
@@ -40,12 +40,12 @@ class FakeRunner:
 class PublishSkillTest(unittest.TestCase):
     def test_origin_parser_supports_https_and_ssh(self) -> None:
         self.assertEqual(
-            PUBLISH.parse_origin("https://github.com/joeseesun/qiaomu-demo.git"),
-            ("joeseesun", "qiaomu-demo"),
+            PUBLISH.parse_origin("https://github.com/tokenaissance/fastagent-demo.git"),
+            ("tokenaissance", "fastagent-demo"),
         )
         self.assertEqual(
-            PUBLISH.parse_origin("git@github.com:joeseesun/qiaomu-demo.git"),
-            ("joeseesun", "qiaomu-demo"),
+            PUBLISH.parse_origin("git@github.com:tokenaissance/fastagent-demo.git"),
+            ("tokenaissance", "fastagent-demo"),
         )
 
     def test_generated_readme_passes_public_contract(self) -> None:
@@ -102,13 +102,13 @@ class PublishSkillTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "SKILL.md").write_text(
-                "---\nname: qiaomu-demo\ndescription: |\n  把重复工作流整理成可验证的 qiaomu skill。\n---\n",
+                "---\nname: fastagent-demo\ndescription: |\n  把重复工作流整理成可验证的 fastagent skill。\n---\n",
                 encoding="utf-8",
             )
             (root / "manifest.json").write_text(
                 json.dumps(
                     {
-                        "name": "qiaomu-demo",
+                        "name": "fastagent-demo",
                         "version": "1.0.0",
                         "owner": "Tokenaissance",
                         "upstream_inspiration": "https://github.com/example/upstream",
@@ -164,13 +164,13 @@ class PublishSkillTest(unittest.TestCase):
             base = Path(directory)
             home = base / "home"
             source = base / "source"
-            target = home / ".agents" / "skills" / "qiaomu-demo"
+            target = home / ".agents" / "skills" / "fastagent-demo"
             source.mkdir(parents=True)
             target.mkdir(parents=True)
             (source / "SKILL.md").write_text("new\n", encoding="utf-8")
             (target / "SKILL.md").write_text("old\n", encoding="utf-8")
             with patch.object(PUBLISH.Path, "home", return_value=home):
-                result = PUBLISH.sync_local(source, "qiaomu-demo")
+                result = PUBLISH.sync_local(source, "fastagent-demo")
             self.assertEqual(result["status"], "updated")
             self.assertEqual((target / "SKILL.md").read_text(encoding="utf-8"), "new\n")
             backup = Path(result["backup"])

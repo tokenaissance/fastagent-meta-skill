@@ -15,7 +15,7 @@ from typing import Any, Callable
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-SPEC = importlib.util.spec_from_file_location("qiaomu_search_skillsmp", SCRIPT_DIR / "search_skillsmp.py")
+SPEC = importlib.util.spec_from_file_location("fastagent_search_skillsmp", SCRIPT_DIR / "search_skillsmp.py")
 if SPEC is None or SPEC.loader is None:  # pragma: no cover
     raise RuntimeError("unable to load search_skillsmp.py")
 SKILLSMP = importlib.util.module_from_spec(SPEC)

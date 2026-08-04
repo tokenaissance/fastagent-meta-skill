@@ -50,19 +50,19 @@ class DiscoverSkillEntrypointsTest(unittest.TestCase):
             root = Path(temp_dir)
             (root / "reports").mkdir()
             (root / "reports" / "skill-ir.json").write_text(
-                json.dumps({"package": {"name": "qiaomu-test", "version": "1.0.0"}}), encoding="utf-8"
+                json.dumps({"package": {"name": "fastagent-test", "version": "1.0.0"}}), encoding="utf-8"
             )
             (root / "reports" / "trigger-eval.json").write_text(
                 json.dumps({"ok": True, "summary": {"total": 1, "passed": 1}}), encoding="utf-8"
             )
             (root / "reports" / "prior-art-research.md").write_text("research", encoding="utf-8")
-            (root / "reports" / "creation-handoff.md").write_text("qiaomu-test 2.0.0", encoding="utf-8")
+            (root / "reports" / "creation-handoff.md").write_text("fastagent-test 2.0.0", encoding="utf-8")
             failures: list[str] = []
             warnings: list[str] = []
 
             VALIDATE_SKILL.validate_evidence_reports(
                 root,
-                {"name": "qiaomu-test", "version": "2.0.0", "maturity_tier": "governed"},
+                {"name": "fastagent-test", "version": "2.0.0", "maturity_tier": "governed"},
                 failures,
                 warnings,
             )

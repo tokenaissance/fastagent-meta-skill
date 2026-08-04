@@ -25,7 +25,7 @@
     "outputs": [],
     "exclusions": [],
     "defaults": {
-      "skill_name_prefix": "",
+      "skill_name_prefix": "fastagent-",
       "max_preferred_hyphen_parts": 3,
       "copyright": "Copyright (c) 2026 Tokenaissance",
       "attribution": "Forked from joeseesun/qiaomu-meta-skill; upstream yaojingang/yao-meta-skill"

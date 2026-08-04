@@ -33,10 +33,10 @@ class ReleaseCheckTest(unittest.TestCase):
             root = Path(directory)
             (root / "reports").mkdir()
             (root / "manifest.json").write_text(
-                json.dumps({"name": "qiaomu-test", "version": "2.0.0"}), encoding="utf-8"
+                json.dumps({"name": "fastagent-test", "version": "2.0.0"}), encoding="utf-8"
             )
             (root / "reports" / "skill-ir.json").write_text(
-                json.dumps({"package": {"name": "qiaomu-test", "version": "1.0.0"}}), encoding="utf-8"
+                json.dumps({"package": {"name": "fastagent-test", "version": "1.0.0"}}), encoding="utf-8"
             )
             (root / "reports" / "trigger-eval.json").write_text(
                 json.dumps({"ok": True, "summary": {"total": 1, "passed": 1}}), encoding="utf-8"

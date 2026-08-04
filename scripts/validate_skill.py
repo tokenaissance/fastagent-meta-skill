@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the lightweight Qiaomu skill package contract."""
+"""Validate the lightweight fastagent skill package contract."""
 
 from __future__ import annotations
 
@@ -284,7 +284,7 @@ def validate(root: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Validate a Qiaomu skill package.")
+    parser = argparse.ArgumentParser(description="Validate a fastagent skill package.")
     parser.add_argument("skill_dir", nargs="?", default=".", help="Skill directory to validate.")
     args = parser.parse_args()
 

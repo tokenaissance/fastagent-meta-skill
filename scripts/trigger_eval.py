@@ -151,7 +151,7 @@ def evaluate(root: Path, cases_path: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate a Qiaomu skill trigger description against smoke cases.")
+    parser = argparse.ArgumentParser(description="Evaluate a fastagent skill trigger description against smoke cases.")
     parser.add_argument("skill_dir", nargs="?", default=".", help="Skill directory.")
     parser.add_argument("--cases", default="evals/trigger_cases.json", help="Trigger case JSON path.")
     parser.add_argument("--output", "-o", help="Write JSON report to this path.")

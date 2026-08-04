@@ -223,6 +223,8 @@ Skill 不应该是一套不可修改的「标准答案」。它更像把个人�
 - [`joeseesun/qiaomu-skill-publisher`](https://github.com/joeseesun/qiaomu-skill-publisher)：README、License 与安装验证；其能力现已安全内建。
 - skills.sh、SkillsMP 与所有在 prior-art 报告中被研究的开源作者。
 
+上游作者的公开 Codex skill 历史以谱系形式保留在 [`reports/codex-skill-catalog.md`](../reports/codex-skill-catalog.md)；本 fork 把它作为上游证据引用，而不是当作自己的产品产出。
+
 上游思想以语义方式吸收并保留归因，不整库镜像，不复制私有内容或长段表述，也不把搜索热度冒充质量。
 
 Upstream inspiration: https://github.com/joeseesun/qiaomu-meta-skill; https://github.com/yaojingang/yao-meta-skill; https://github.com/joeseesun/qiaomu-skill-publisher

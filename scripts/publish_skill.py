@@ -612,7 +612,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--branch", help="Feature branch; defaults to codex/publish-<skill>-v<version>")
     parser.add_argument("--private", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Read-only audit; do not edit files or GitHub")
-    parser.add_argument("--prepare-only", action="store_true", help="Prepare local LICENSE/README/Profile and stop")
+    parser.add_argument("--prepare-only", action="store_true", help="Prepare local LICENSE/README and stop")
     parser.add_argument("--verify-only", action="store_true", help="Verify an existing release and clean install")
     parser.add_argument("--no-merge", action="store_true", help="Stop after the PR passes local and PR gates")
     parser.add_argument("--no-sync-local", action="store_true", help="Do not sync a noncanonical source into ~/.agents/skills")

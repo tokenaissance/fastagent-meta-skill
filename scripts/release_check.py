@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit local, PR, or published release readiness for a Qiaomu skill."""
+"""Audit local, PR, or published release readiness for a fastagent skill."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from typing import Any
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-SPEC = importlib.util.spec_from_file_location("qiaomu_validate_skill", SCRIPT_DIR / "validate_skill.py")
+SPEC = importlib.util.spec_from_file_location("fastagent_validate_skill", SCRIPT_DIR / "validate_skill.py")
 if SPEC is None or SPEC.loader is None:  # pragma: no cover
     raise RuntimeError("unable to load validate_skill.py")
 VALIDATOR = importlib.util.module_from_spec(SPEC)
@@ -263,7 +263,7 @@ def evaluate(root: Path, phase: str, run_tests: bool, install_check: bool) -> di
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Check Qiaomu skill release readiness.")
+    parser = argparse.ArgumentParser(description="Check fastagent skill release readiness.")
     parser.add_argument("skill_dir", nargs="?", default=".")
     parser.add_argument("--phase", choices=("local", "pr", "published"), default="local")
     parser.add_argument("--run-tests", action="store_true")

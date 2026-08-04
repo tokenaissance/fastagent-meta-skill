@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export a compact Skill IR document from a Qiaomu skill package."""
+"""Export a compact Skill IR document from a fastagent skill package."""
 
 from __future__ import annotations
 
@@ -181,7 +181,7 @@ def build_ir(root: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Export compact Skill IR for a Qiaomu skill.")
+    parser = argparse.ArgumentParser(description="Export compact Skill IR for a fastagent skill.")
     parser.add_argument("skill_dir", nargs="?", default=".", help="Skill directory.")
     parser.add_argument("--output", "-o", help="Write JSON to this path.")
     args = parser.parse_args()
