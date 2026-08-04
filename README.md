@@ -127,7 +127,7 @@ python3 ~/.agents/skills/fastagent-meta-skill/scripts/validate_skill.py \
 
 - [ ] Node.js 18+: `node --version`
 - [ ] npx available: `npx --version`
-- [ ] Python 3.9+: `python3 --version`
+- [ ] Python 3.11+ (PyYAML): `python3 --version && python3 -c "import yaml"`
 - [ ] GitHub CLI installed and authenticated for publishing: `gh auth status`
 - [ ] Network access to skills.sh, SkillsMP, and GitHub for search or publishing
 

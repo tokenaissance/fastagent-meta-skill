@@ -124,7 +124,7 @@ python3 ~/.agents/skills/fastagent-meta-skill/scripts/validate_skill.py \
 
 - [ ] Node.js 18+：`node --version`
 - [ ] npx 可用：`npx --version`
-- [ ] Python 3.9+：`python3 --version`
+- [ ] Python 3.11+（含 PyYAML）：`python3 --version && python3 -c "import yaml"`
 - [ ] 发布到 GitHub 时安装并登录 GitHub CLI：`gh auth status`
 - [ ] 搜索或发布时允许访问 skills.sh、SkillsMP 与 GitHub
 
