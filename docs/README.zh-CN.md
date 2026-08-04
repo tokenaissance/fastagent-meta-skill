@@ -180,6 +180,22 @@ python3 scripts/release_check.py . --phase local --run-tests
 python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
+## 推荐环境
+
+脚本需要 **Python 3.11+**（`scripts/search_skillsmp.py` 使用 `datetime.UTC`）和 **PyYAML**（`scripts/validate_skill.py`），所以必须用同时满足两者的解释器，否则本地门禁会被拆到多个解释器里。macOS 默认 `python3` 可能是 3.9（没有 `datetime.UTC`），独立的 `python3.13` 又可能缺 PyYAML；用带 Python 3.11+ 和 PyYAML 的 conda 环境可以避免这个问题。本机 `google` conda 环境同时具备：
+
+```bash
+conda run -n google python --version                                   # Python 3.13.11
+conda run -n google python -c "import yaml; print(yaml.__version__)"   # 6.0.3
+```
+
+用同一个解释器跑本地检查，例如：
+
+```bash
+conda run -n google python scripts/validate_skill.py .
+conda run -n google python scripts/release_check.py . --phase local --run-tests
+```
+
 ## 常见问题 / Troubleshooting
 
 | 问题 | 常见原因 | 处理方式 |
