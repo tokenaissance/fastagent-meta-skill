@@ -35,16 +35,12 @@ class CodexSkillCatalogTest(unittest.TestCase):
         self.assertEqual(28, len(set(public + private)))
         self.assertIn("Total deduplicated cases: 28", self.catalog)
 
-    def test_public_cases_link_to_their_repositories(self) -> None:
-        public_block = self.catalog.split(
-            "### Local, private, or not publicly released", maxsplit=1
-        )[0]
-        for name in numbered_names(public_block):
-            self.assertIn(
-                f"https://github.com/joeseesun/{name}",
-                self.readme,
-                f"README lacks public repository link for {name}",
-            )
+    def test_readme_credits_upstream_catalog_as_lineage(self) -> None:
+        # The de-branded fork credits the upstream catalog report as lineage
+        # instead of inlining the personal skill catalog as its own product.
+        self.assertIn("reports/codex-skill-catalog.md", self.readme)
+        self.assertIn("joeseesun/qiaomu-meta-skill", self.readme)
+        self.assertIn("joeseesun/qiaomu-skill-publisher", self.readme)
 
     def test_catalog_does_not_publish_local_paths_or_raw_session_files(self) -> None:
         self.assertNotIn("/Users/", self.catalog)

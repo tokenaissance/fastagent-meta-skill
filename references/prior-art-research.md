@@ -4,7 +4,7 @@ Use this method before creating a new skill or materially redesigning an existin
 
 ## 1. Built-in discovery
 
-This method is bundled into `qiaomu-meta-skill`. Do not check for, download, install, or load another discovery skill.
+This method is bundled into `fastagent-meta-skill`. Do not check for, download, install, or load another discovery skill.
 
 Use skills.sh, SkillsMP, and GitHub source directly. `npx` may fetch the Skills CLI package into its normal command cache, but it must not create a separate agent skill installation.
 
@@ -94,7 +94,7 @@ Respect licenses and attribution. Learn principles, sequencing, validation patte
 Before drafting, write four buckets:
 
 - `keep`: proven mechanisms that fit the user's job unchanged in principle
-- `adapt`: useful mechanisms that require Qiaomu conventions, different tools, or lighter gates
+- `adapt`: useful mechanisms that require fastagent conventions, different tools, or lighter gates
 - `reject`: popular or polished patterns that add risk, bloat, platform lock-in, or do not fit
 - `invent`: new connections, scripts, evals, or workflow improvements created for this user's constraints
 

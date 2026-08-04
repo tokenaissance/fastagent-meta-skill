@@ -1,29 +1,66 @@
 ---
-name: qiaomu-meta-skill
+name: fastagent-meta-skill
 description: |
-  Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish qiaomu-flavored agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README/Profile preparation, GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.
+  Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation, GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.
 metadata:
-  author: Qiaomu
+  author: Tokenaissance
   version: "2.8.1"
-  upstream_inspiration: yaojingang/yao-meta-skill; joeseesun/qiaomu-skill-publisher
+  upstream_inspiration: joeseesun/qiaomu-meta-skill; yaojingang/yao-meta-skill; joeseesun/qiaomu-skill-publisher
 ---
 
-# Qiaomu Meta Skill
+# FastAgent Meta Skill
 
-Build reusable Qiaomu skill packages, not long prompts.
+Build reusable FastAgent skill packages, not long prompts.
+
+## FastAgent runtime — read this first
+
+This skill runs inside a FastAgent agent. The host runtime has its own
+path convention you MUST follow when persisting a new skill; ignoring it
+leaves the new skill in a workspace folder where nothing ever discovers
+it (symptom: the skill appears under "YOUR FILES" in chat instead of
+being available the next turn).
+
+When you call the `write_file` tool for a new skill's files, prefix every
+path with `skills/<skill-name>/`. The runtime routes any path matching
+that prefix to the chatter's per-user skills bucket on host disk
+(`~/.fastagent/users/<userId>/skills/<name>/`). SkillsLoader scans that
+bucket on the next turn and exposes the skill on every agent the chatter
+uses — so a "PDF generator" sunk while talking to agent A is also
+available when they switch to agent B. The write is also mirrored to the
+workspace store so sibling pods (cloud deploys) see it without a pod
+restart.
+
+```text
+✅ write_file(path="skills/domain-check/SKILL.md", content=...)
+✅ write_file(path="skills/domain-check/main.py", content=...)
+❌ write_file(path="domain-check/SKILL.md", ...)          → lands in /workspace
+❌ write_file(path="/skills/domain-check/SKILL.md", ...)  → sandbox overlay, lost on rebuild
+```
+
+Note: the new skill becomes visible to the LLM on the **next turn**, not
+mid-turn. Tell the user something like "skill saved — invoke it on your
+next message" so they don't expect immediate use.
+
+The rest of this document was written for local Claude Code / Codex and
+talks about absolute paths, `/tmp/` staging, `npx` installs, and GitHub
+publishing. On FastAgent, the only thing that persists a skill is
+`write_file` calls with the `skills/<name>/` prefix above. Prior-art
+research, trigger/output evals, Skill IR, and release gates still apply
+when the user asks for them; record `missing evidence` for anything the
+sandbox cannot run (npx, SkillsMP, gh, network).
 
 ## Router Rules
 
 - Route by frontmatter `description` first.
-- Once selected, `qiaomu-meta-skill` is the single authoring authority. Do not also invoke a generic `skill-creator` unless the user explicitly requests comparison or this skill is unavailable.
+- Once selected, `fastagent-meta-skill` is the single authoring authority. Do not also invoke a generic `skill-creator` unless the user explicitly requests comparison or this skill is unavailable.
 - Built-in prior-art discovery belongs to this skill. Do not install, load, or delegate to a separate discovery skill.
 - Built-in GitHub publishing belongs to this skill. Do not require or invoke a separate publisher skill after this package is selected.
 - Keep the package root `SKILL.md` to routing and the minimal workflow. Put judgment in `references/`, deterministic behavior in `scripts/`, regression cases in `evals/`, and evidence in `reports/`.
 - A package has one discoverable root `SKILL.md`; embedded examples and fixtures use `SKILL.example.md` or `SKILL.fixture.md`.
 - Do not turn one-off summaries, translations, explanations, or brainstorming into skills.
 - Match the user's action: create/refactor/package requests may edit; audit/evaluate/diagnose-only requests remain read-only; publish only when explicitly requested.
-- Default to concise Chinese-first `qiaomu-` names with no more than three preferred hyphen parts.
-- Add `Copyright (c) 向阳乔木`, X `https://x.com/vista8`, and GitHub `https://github.com/joeseesun/` unless another owner is requested.
+- Default to concise Chinese-first `fastagent-` names with no more than three preferred hyphen parts.
+- Add `Copyright (c) 2026 Tokenaissance` and credit upstream inspirations unless another owner is requested.
 
 ## Modes
 
@@ -72,7 +109,7 @@ Before promoting one failure into a core rule:
 
 Prefer intent fidelity, source fidelity, and decision rules over an expanding topic encyclopedia.
 
-## Qiaomu Skill OS
+## Skill OS
 
 1. `Intent`: recurring job, users, inputs, output, exclusions, standards, references.
 2. `Skill IR`: platform-neutral meaning and evidence boundary.
@@ -135,13 +172,13 @@ The final creation handoff must name the **reference skills studied**, give **ca
 1. Treat README as a product page: value, install, natural examples, prerequisites, outputs, configuration, risks, and troubleshooting.
 2. Audit without mutation when useful: `python3 scripts/publish_skill.py /path/to/skill --dry-run`.
 3. Only after an explicit publish request, run `python3 scripts/publish_skill.py /path/to/skill`.
-4. The bundled publisher prepares MIT LICENSE, README and Qiaomu profile assets; resolves skill/repository identity; blocks secrets and reused release versions; creates or reuses a GitHub repository; and publishes only through a feature branch and PR.
+4. The bundled publisher prepares MIT LICENSE and README; resolves skill/repository identity; blocks secrets and reused release versions; creates or reuses a GitHub repository; and publishes only through a feature branch and PR.
 5. Merge is blocked by conflicts, failed/pending checks or requested changes. Successful publication creates `vX.Y.Z`, verifies `npx skills add --list`, performs an isolated install, and runs the published release gate.
 6. Do not report publication complete until the remote default version, GitHub Release, discovery and clean installation are verified.
 
 Detailed CLI and safety decisions: [Self-Contained Skill Publishing](references/publishing.md). README method: [GitHub README Playbook](references/github-readme-playbook.md). Operation method: [SkillOps Loop](references/skillops-loop.md).
 
-## Qiaomu Defaults
+## Defaults
 
 - Prefer practical, concise, publishable Chinese output.
 - Keep one creator authority and one root skill entrypoint.

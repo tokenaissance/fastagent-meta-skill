@@ -16,7 +16,7 @@ except Exception:  # pragma: no cover
     yaml = None
 
 
-SCHEMA_VERSION = "2.0.0-qiaomu-lite"
+SCHEMA_VERSION = "2.0.0-fastagent-lite"
 
 
 def read_text(path: Path) -> str:
@@ -138,11 +138,11 @@ def build_ir(root: Path) -> dict[str, Any]:
         "intent": {
             "description": frontmatter.get("description", ""),
             "job_to_be_done": intent.get("job_to_be_done") or frontmatter.get("description", ""),
-            "target_users": intent.get("target_users", ["Qiaomu operator"]),
+            "target_users": intent.get("target_users", ["fastagent operator"]),
             "inputs": intent.get("inputs", []),
             "outputs": intent.get("outputs", []),
             "exclusions": intent.get("exclusions", []),
-            "qiaomu_defaults": manifest.get("qiaomu_defaults", {}),
+            "defaults": manifest.get("defaults", {}),
         },
         "triggers": {
             "should_trigger": trigger_samples(root, "should_trigger"),

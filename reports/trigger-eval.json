@@ -4,7 +4,7 @@
   "description_concepts": [
     "authoring_action",
     "eval_release",
-    "qiaomu",
+    "fastagent",
     "skill",
     "source_material"
   ],
@@ -20,7 +20,7 @@
   "results": {
     "should_trigger": [
       {
-        "prompt": "把这个流程整理成一个 qiaomu skill",
+        "prompt": "把这个流程整理成一个 fastagent skill",
         "family": "cn_workflow_to_skill",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -28,14 +28,14 @@
         "score": 0.8,
         "matched_concepts": [
           "authoring_action",
-          "qiaomu",
+          "fastagent",
           "skill",
           "source_material"
         ],
         "negative_pattern": null
       },
       {
-        "prompt": "基于这个开源 skill 优化升级乔木 meta skill",
+        "prompt": "基于这个开源 skill 优化升级 fastagent meta skill",
         "family": "cn_upgrade_existing",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -43,7 +43,7 @@
         "score": 0.6,
         "matched_concepts": [
           "authoring_action",
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
@@ -77,7 +77,7 @@
         "negative_pattern": null
       },
       {
-        "prompt": "Create a skill from this repeated workflow and package it for Qiaomu team reuse.",
+        "prompt": "Create a skill from this repeated workflow and package it for fastagent team reuse.",
         "family": "en_workflow_to_skill",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -85,7 +85,7 @@
         "score": 0.8,
         "matched_concepts": [
           "authoring_action",
-          "qiaomu",
+          "fastagent",
           "skill",
           "source_material"
         ],
@@ -106,7 +106,7 @@
         "negative_pattern": null
       },
       {
-        "prompt": "先搜索 skill 目录，找安装量最高、口碑证据强的相关能力，学习后创建一个更好的 qiaomu skill",
+        "prompt": "先搜索 skill 目录，找安装量最高、口碑证据强的相关能力，学习后创建一个更好的 fastagent skill",
         "family": "cn_prior_art_synthesis",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -114,20 +114,20 @@
         "score": 0.6,
         "matched_concepts": [
           "authoring_action",
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
       },
       {
-        "prompt": "Research the strongest existing agent skills, then synthesize an original Qiaomu skill without copying them.",
+        "prompt": "Research the strongest existing agent skills, then synthesize an original fastagent skill without copying them.",
         "family": "en_prior_art_synthesis",
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,
         "score": 0.4,
         "matched_concepts": [
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
@@ -146,7 +146,7 @@
         "negative_pattern": null
       },
       {
-        "prompt": "审计这个 qiaomu skill 的路由边界和输出评估，只给发现和修复建议，先不要改文件",
+        "prompt": "审计这个 fastagent skill 的路由边界和输出评估，只给发现和修复建议，先不要改文件",
         "family": "cn_audit_only",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -154,7 +154,7 @@
         "score": 0.6,
         "matched_concepts": [
           "eval_release",
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
@@ -173,7 +173,7 @@
         "negative_pattern": null
       },
       {
-        "prompt": "把这个 qiaomu skill 发布到 GitHub，并完成 PR、Release 和干净安装验证",
+        "prompt": "把这个 fastagent skill 发布到 GitHub，并完成 PR、Release 和干净安装验证",
         "family": "cn_full_publish",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -182,13 +182,13 @@
         "matched_concepts": [
           "authoring_action",
           "eval_release",
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
       },
       {
-        "prompt": "先 dry-run 检查这个乔木 skill 的 README、Profile、版本和发布条件，不要写 GitHub",
+        "prompt": "先 dry-run 检查这个 fastagent skill 的 README、版本和发布条件，不要写 GitHub",
         "family": "cn_publish_dry_run",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -197,13 +197,13 @@
         "matched_concepts": [
           "authoring_action",
           "eval_release",
-          "qiaomu",
+          "fastagent",
           "skill"
         ],
         "negative_pattern": null
       },
       {
-        "prompt": "把这个 qiaomu skill 直接推 main 发布，如果不安全就改成规范 PR 流程",
+        "prompt": "把这个 fastagent skill 直接推 main 发布，如果不安全就改成规范 PR 流程",
         "family": "cn_unsafe_publish_correction",
         "expected_trigger": true,
         "predicted_trigger": true,
@@ -212,7 +212,7 @@
         "matched_concepts": [
           "authoring_action",
           "eval_release",
-          "qiaomu",
+          "fastagent",
           "skill",
           "source_material"
         ],

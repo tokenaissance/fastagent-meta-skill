@@ -48,30 +48,23 @@ class PublishSkillTest(unittest.TestCase):
             ("joeseesun", "qiaomu-demo"),
         )
 
-    def test_profile_marker_inside_code_fence_is_ignored(self) -> None:
-        text = "```md\n<!-- qiaomu-profile:start -->\n```\n\n## License\n"
-        updated = PUBLISH.insert_profile(text)
-        self.assertEqual(updated.count(PUBLISH.PROFILE_START), 2)
-        self.assertIn("## 关于向阳乔木", updated)
-        self.assertEqual(PUBLISH.insert_profile(updated), updated)
-
     def test_generated_readme_passes_public_contract(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             upstream = "https://github.com/example/upstream"
             text = PUBLISH.generated_readme(
                 {
-                    "name": "qiaomu-demo",
+                    "name": "fastagent-demo",
                     "description": "把重复工作流整理成可验证的技能包。",
                     "version": "1.0.0",
-                    "owner": "向阳乔木",
+                    "owner": "tokenaissance",
                 },
-                "joeseesun",
-                "qiaomu-demo",
+                "tokenaissance",
+                "fastagent-demo",
                 upstream,
             )
             (root / "README.md").write_text(text, encoding="utf-8")
-            self.assertEqual(PUBLISH.check_readme(root, upstream, require_profile=False), [])
+            self.assertEqual(PUBLISH.check_readme(root, upstream), [])
             self.assertIn("validate_skill.py", text)
 
     def test_default_branch_push_is_rejected(self) -> None:
@@ -117,7 +110,7 @@ class PublishSkillTest(unittest.TestCase):
                     {
                         "name": "qiaomu-demo",
                         "version": "1.0.0",
-                        "owner": "向阳乔木",
+                        "owner": "Tokenaissance",
                         "upstream_inspiration": "https://github.com/example/upstream",
                     }
                 ),
@@ -134,7 +127,6 @@ class PublishSkillTest(unittest.TestCase):
                 verify_only=False,
                 no_merge=False,
                 no_sync_local=True,
-                skip_qiaomu_profile=False,
             )
             result = PUBLISH.publish(args, FakeRunner())
             self.assertTrue(result["ok"])
@@ -144,11 +136,7 @@ class PublishSkillTest(unittest.TestCase):
             self.assertFalse((root / "README.md").exists())
             self.assertEqual(result["default_branch_push"], "forbidden")
 
-    def test_profile_assets_are_bundled(self) -> None:
-        for name in PUBLISH.PROFILE_ASSETS:
-            self.assertTrue((PUBLISH.PROFILE_SOURCE / name).is_file(), name)
-
-    def test_prepare_package_writes_license_readme_and_profile(self) -> None:
+    def test_prepare_package_writes_license_and_readme(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "manifest.json").write_text(
@@ -158,21 +146,18 @@ class PublishSkillTest(unittest.TestCase):
             result = PUBLISH.prepare_package(
                 root,
                 {
-                    "name": "qiaomu-demo",
-                    "description": "把重复工作流整理成可验证的 qiaomu skill。",
+                    "name": "fastagent-demo",
+                    "description": "把重复工作流整理成可验证的 fastagent skill。",
                     "version": "1.0.0",
-                    "owner": "向阳乔木",
+                    "owner": "tokenaissance",
                 },
-                "joeseesun",
-                "qiaomu-demo",
+                "tokenaissance",
+                "fastagent-demo",
                 write=True,
-                include_profile=True,
             )
             self.assertEqual(result["failures"], [])
             self.assertTrue((root / "LICENSE").is_file())
-            self.assertIn(PUBLISH.PROFILE_START, (root / "README.md").read_text(encoding="utf-8"))
-            for name in PUBLISH.PROFILE_ASSETS.values():
-                self.assertTrue((root / PUBLISH.PROFILE_TARGET / name).is_file())
+            self.assertTrue((root / "README.md").is_file())
 
     def test_local_sync_preserves_previous_copy_outside_skill_discovery(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

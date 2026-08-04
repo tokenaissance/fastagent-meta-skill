@@ -1,6 +1,6 @@
 # Review And Release Gates
 
-乔木 skill 发布前不靠“看起来差不多”，而靠一组轻重分层的门禁。
+fastagent skill 发布前不靠“看起来差不多”，而靠一组轻重分层的门禁。
 
 ## Gate 语义
 
@@ -74,7 +74,7 @@ python3 scripts/publish_skill.py /path/to/skill
 
 ## 公开发布提醒
 
-Qiaomu-owned 公开 skill 的正常完成线是：
+fastagent 公开 skill 的正常完成线是：
 
 1. feature branch
 2. 验证

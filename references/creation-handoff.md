@@ -25,7 +25,7 @@ Do not list a candidate that was only seen in a search result but not inspected.
 Summarize:
 
 - `keep`: mechanism retained in principle
-- `adapt`: mechanism changed for Qiaomu users, tools, language, or risk level
+- `adapt`: mechanism changed for fastagent users, tools, language, or risk level
 - `reject`: mechanism omitted and the concrete reason
 - `invent`: original connection or capability created for this job
 

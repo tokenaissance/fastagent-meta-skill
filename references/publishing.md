@@ -1,6 +1,8 @@
 # Self-Contained Skill Publishing
 
-`qiaomu-meta-skill` owns the complete public release path. Do not require or invoke a separate publisher skill after this package is selected.
+`fastagent-meta-skill` owns the complete public release path. Do not require or invoke a separate publisher skill after this package is selected.
+
+> **FastAgent runtime note:** publishing is an optional, environment-dependent path. Inside the FastAgent cloud sandbox, git / gh / npx and network access may be unavailable or restricted. Publishing only runs when the user explicitly requests it **and** the environment can actually carry out the Git/PR/Release steps. In the cloud, creating a skill ends at the per-user skills bucket (via `skills/<name>/` writes); treat GitHub publication as a best-effort extra, not a required gate, and record `missing evidence` for anything the sandbox cannot verify.
 
 ## Capability contract
 
@@ -9,8 +11,7 @@ The bundled `scripts/publish_skill.py` covers the useful behavior learned from `
 1. strict `SKILL.md` and `manifest.json` identity/version checks
 2. MIT `LICENSE` creation when missing
 3. README generation or quality validation
-4. bundled Qiaomu profile/QR assets and idempotent README block injection
-5. GitHub owner/repository detection without conflating repository and skill names
+4. GitHub owner/repository detection without conflating repository and skill names
 6. repository creation with a baseline default branch when needed
 7. feature-branch commit and push; direct default-branch push is forbidden
 8. pull-request creation, PR gate execution, review/check inspection, and optional merge
@@ -25,7 +26,7 @@ Read-only audit:
 python3 scripts/publish_skill.py /path/to/skill --dry-run
 ```
 
-Prepare LICENSE, README and Qiaomu profile locally without GitHub writes:
+Prepare LICENSE and README locally without GitHub writes:
 
 ```bash
 python3 scripts/publish_skill.py /path/to/skill --prepare-only
@@ -56,7 +57,6 @@ Useful target controls:
 - `--branch codex/...`
 - `--private`
 - `--no-sync-local`
-- `--skip-qiaomu-profile` only for explicitly non-Qiaomu packages
 
 ## Safety decisions
 

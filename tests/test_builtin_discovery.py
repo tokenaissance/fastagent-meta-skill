@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ensure prior-art discovery stays built into qiaomu-meta-skill."""
+"""Ensure prior-art discovery stays built into fastagent-meta-skill."""
 
 from __future__ import annotations
 

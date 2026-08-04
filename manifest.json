@@ -1,28 +1,28 @@
 {
-  "name": "qiaomu-meta-skill",
+  "name": "fastagent-meta-skill",
   "version": "2.8.1",
-  "owner": "Qiaomu",
+  "owner": "Tokenaissance",
   "updated_at": "2026-08-04",
   "status": "active",
   "maturity_tier": "governed",
   "lifecycle_stage": "library",
   "context_budget_tier": "production",
   "review_cadence": "quarterly",
-  "upstream_inspiration": "https://github.com/yaojingang/yao-meta-skill; https://github.com/joeseesun/qiaomu-skill-publisher",
+  "upstream_inspiration": "https://github.com/joeseesun/qiaomu-meta-skill; https://github.com/yaojingang/yao-meta-skill; https://github.com/joeseesun/qiaomu-skill-publisher",
   "upstream_sync": {
     "reviewed_commit": "e15472e1f5dc96f79ea0259bf9fdf67598cea356",
     "reviewed_at": "2026-07-31",
     "reviewed_through_commit_date": "2026-07-16",
     "policy": "semantic adoption; do not mirror upstream wholesale"
   },
-  "qiaomu_defaults": {
-    "skill_name_prefix": "qiaomu-",
+  "defaults": {
+    "skill_name_prefix": "",
     "max_preferred_hyphen_parts": 3,
-    "copyright": "Copyright (c) 向阳乔木",
-    "x": "https://x.com/vista8",
-    "github": "https://github.com/joeseesun/"
+    "copyright": "Copyright (c) 2026 Tokenaissance",
+    "attribution": "Forked from joeseesun/qiaomu-meta-skill; upstream yaojingang/yao-meta-skill"
   },
   "target_platforms": [
+    "fastagent",
     "openai",
     "claude",
     "generic",
@@ -70,7 +70,6 @@
     "evidence_bound_public_claims",
     "self_contained_skill_publisher",
     "mit_license_preparation",
-    "bundled_qiaomu_profile_injection",
     "repository_skill_name_separation",
     "feature_branch_only_publication",
     "pull_request_review_and_check_gate",

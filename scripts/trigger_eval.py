@@ -19,7 +19,7 @@ DEFAULT_CONCEPTS: dict[str, list[str]] = {
     "skill": ["skill", "agent skill", "技能", "agent 能力", "能力包"],
     "source_material": ["workflow", "workflows", "prompt", "prompts", "transcript", "docs", "runbook", "notes", "SOP", "流程", "工作流", "提示词", "笔记", "对话记录", "材料", "脚本"],
     "authoring_action": ["create", "turn", "convert", "refactor", "evaluate", "package", "govern", "publish", "upgrade", "improve", "migrate", "install", "创建", "整理", "封装", "沉淀", "优化", "升级", "迁移", "安装", "补", "发布", "打包"],
-    "qiaomu": ["qiaomu", "乔木", "向阳乔木"],
+    "fastagent": ["fastagent", "meta skill", "meta-skill", "元技能"],
     "eval_release": ["eval", "trigger", "output", "Skill IR", "release gate", "评估", "触发", "边界", "门禁", "治理", "发布"],
 }
 

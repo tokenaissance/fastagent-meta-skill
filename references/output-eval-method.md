@@ -27,7 +27,7 @@ Trigger eval 证明“会不会叫对 skill”。Output eval 证明“叫对以�
 
 - 必须生成的文件路径。
 - 必须包含的章节、边界、排除项或证据路径。
-- 必须保留的 Qiaomu 命名、版权、README 安装命令。
+- 必须保留的命名、版权、README 安装命令。
 - 禁止出现的私密路径、token、空泛占位符。
 - 禁止过度声明“已发布”“已人工评审”“已 provider-backed”。
 
