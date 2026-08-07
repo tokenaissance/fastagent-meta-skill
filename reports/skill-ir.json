@@ -3,7 +3,7 @@
   "generated_at": "2026-08-07",
   "package": {
     "name": "fastagent-meta-skill",
-    "version": "2.8.3",
+    "version": "2.8.4",
     "owner": "Tokenaissance",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
