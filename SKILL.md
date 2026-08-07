@@ -126,7 +126,7 @@ Prefer intent fidelity, source fidelity, and decision rules over an expanding to
 4. Pass the generalization gate for sample-driven core changes.
 5. Choose the lightest valid mode.
 6. Write the `description` early; run `evals/trigger_cases.json` before expanding structure.
-7. Create only earned resources. Never create ceremonial directories or duplicate README/SKILL prose.
+7. Create only earned resources. Never create ceremonial directories or duplicate README/SKILL prose. Follow [Skill Content Method](references/skill-content-method.md) for writing quality: extract from real tasks, add what the agent lacks, calibrate control to fragility, and use gotchas/templates/checklists/validation-loops where they fit.
 8. Export `reports/skill-ir.json` for Production+, public, or cross-platform packages.
 9. Add output evals when correctness, safety, persuasion, or repeatability cannot be shown by trigger tests alone.
 10. Keep mutations within the requested action boundary and preserve rollback for risky changes.
@@ -169,7 +169,7 @@ The final creation handoff must name the **reference skills studied**, give **ca
 
 ## Publish Flow
 
-1. Treat README as a product page: value, install, natural examples, prerequisites, outputs, configuration, risks, and troubleshooting.
+1. Follow `fastagent-meta-skill/README.md` as the canonical README template: badge row, one-liner, capability comparison, natural examples, directory tree, workflow, install, prerequisites, troubleshooting, design philosophy, credits, security boundary. Full structure documented in [GitHub README Playbook](references/github-readme-playbook.md).
 2. Audit without mutation when useful: `python3 scripts/publish_skill.py /path/to/skill --dry-run`.
 3. Only after an explicit publish request, run `python3 scripts/publish_skill.py /path/to/skill`.
 4. The bundled publisher prepares MIT LICENSE and README; resolves skill/repository identity; blocks secrets and reused release versions; creates or reuses a GitHub repository; and publishes only through a feature branch and PR.
@@ -188,6 +188,6 @@ Detailed CLI and safety decisions: [Self-Contained Skill Publishing](references/
 
 ## Reference Map
 
-- Design: [Skill Engineering Method](references/skill-engineering-method.md), [Skill Archetypes](references/skill-archetypes.md), [Intent Dialogue](references/intent-dialogue.md), [Non-Skill Decision Tree](references/non-skill-decision-tree.md)
+- Design: [Skill Engineering Method](references/skill-engineering-method.md), [Skill Content Method](references/skill-content-method.md), [Skill Archetypes](references/skill-archetypes.md), [Intent Dialogue](references/intent-dialogue.md), [Non-Skill Decision Tree](references/non-skill-decision-tree.md)
 - Evidence: [Eval Playbook](references/eval-playbook.md), [Output Eval](references/output-eval-method.md), [Skill IR](references/skill-ir-method.md), [Governance](references/governance.md)
 - Release: [Self-Contained Publishing](references/publishing.md), [Review And Release Gates](references/review-release-gates.md), [GitHub README](references/github-readme-playbook.md), [SkillOps](references/skillops-loop.md)

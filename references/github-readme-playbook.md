@@ -4,6 +4,13 @@ Use this when creating, refactoring, or publishing a skill. The README is the
 public product page for humans; `SKILL.md` is the runtime instruction file for
 agents. Do not dump internal agent rules into the README.
 
+## Canonical Template
+
+**`fastagent-meta-skill/README.md` is the reference template for all derived
+skill READMEs.** When building a new skill, open this repo's own README and
+follow its structure, tone, and section ordering. The sections below describe
+that format in detail.
+
 ## README Goal
 
 The README should make a stranger quickly answer:
@@ -14,127 +21,70 @@ The README should make a stranger quickly answer:
 4. What can I say to trigger it?
 5. What can go wrong, and how do I fix it?
 
-## Required Shape
+## Required Section Order
 
-For public GitHub skills, default to Chinese first. Add English only when the
-skill has a likely international audience.
-
-Recommended order:
+Follow `fastagent-meta-skill/README.md` as the canonical example. The section
+order is:
 
 ```markdown
 # skill-name
 
 > 一句话痛点/价值主张。
 
-[badges if public and useful]
+[badges: Release, Stars, Last commit, License, language switcher(s)]
 
-## 为什么值得用
-## 一行安装
-## 你可以这样说
-## 它会做什么
-## 前置条件
-## 输出示例
-## 配置
+## 为什么值得用 / Why I built this
+## 能力对比 / What makes it more than X
+## 你可以这样说 / Natural-language examples
+## 它会做什么 / What it produces
+## 完整工作流 / One complete workflow
+## 安装 / Installation
+## 前置条件 / Prerequisites
+## [feature-specific sections — CLI demos, config, etc.]
+## 推荐环境 / Recommended environment
 ## Troubleshooting
-## 致谢
+## 设计哲学 / Design philosophy
+## 致谢 / Credits and sources
+## 安全与证据边界 / Security and evidence boundary
 ## License
 ```
 
-Keep the first screen focused: hook, install, natural-language examples, and one
-concrete output preview. Long architecture notes belong later.
+Keep the first screen focused: hook, badges, install, natural-language examples,
+and one concrete output preview. Long architecture notes belong later.
 
 ## Must-Have Checklist
 
 - [ ] First sentence describes the user's pain or desired outcome, not the
       implementation.
+- [ ] Badge row: Release, Stars, Last commit, License, and language switchers
+      when multi-language READMEs exist. Follow `fastagent-meta-skill/README.md`
+      badge format.
 - [ ] One-line install command appears near the top:
       `npx skills add owner/repo`.
+- [ ] Capability comparison table (feature vs “plain X” vs “this skill”) when
+      the skill replaces or improves an existing approach.
 - [ ] 3-5 natural-language trigger examples show what a user would actually say.
+- [ ] Directory tree shows what the skill produces after installation.
+- [ ] Numbered workflow steps (ideally 7 or fewer) describe the end-to-end flow.
 - [ ] Prerequisites use checkbox format and include verification commands.
 - [ ] Output section shows concrete files, API calls, screenshots, or snippets.
 - [ ] Configuration section lists environment variables without secrets.
 - [ ] Troubleshooting has at least 3 rows: symptom, cause, fix.
 - [ ] Risks and side effects are explicit for credentials, writes, costs, network
       calls, publishing, destructive actions, or account automation.
-- [ ] Third-party tools and upstream projects are credited.
+- [ ] Design philosophy section explains the “why” behind key decisions.
+- [ ] Third-party tools and upstream projects are credited with links.
+- [ ] Security/evidence boundary section covers what is and is not committed,
+      how third-party sources are handled, and what counts as evidence.
 - [ ] README does not expose private domains, tokens, cookies, VPS paths, or
       user-specific absolute paths unless the skill is explicitly private.
 
-## Skill README Template
+## Language Decision
 
-```markdown
-# skill-name
-
-> 用户现在遇到的痛点，以及安装后能得到什么。
-
-[![Last commit](https://img.shields.io/github/last-commit/OWNER/REPO?style=flat-square)](https://github.com/OWNER/REPO/commits/main)
-[![License](https://img.shields.io/github/license/OWNER/REPO?style=flat-square)](LICENSE)
-
-## 为什么值得用
-
-用 2-4 句讲具体场景。避免“高效、智能、自动化”这类空词。
-
-## 安装
-
-```bash
-npx skills add OWNER/REPO
-```
-
-验证：
-
-```bash
-ls ~/.agents/skills/skill-name
-```
-
-## 你可以这样说
-
-- “把这个流程整理成一个 skill”
-- “发布这个 skill 到 GitHub”
-- “给这个 skill 补触发词和边界”
-
-## 它会做什么
-
-1. 读取输入和已有文件
-2. 生成或更新 `SKILL.md`
-3. 补 README、interface、scripts 或 references
-4. 运行必要验证
-
-## 前置条件
-
-- [ ] Node.js / Python / CLI 依赖：安装命令和 `--version` 验证
-- [ ] GitHub CLI：`gh auth status`
-- [ ] 需要的环境变量：只写变量名，不写真实值
-
-## 输出示例
-
-```text
-Created skill: ~/.agents/skills/example-skill
-Validated: SKILL.md frontmatter OK
-Published: https://github.com/OWNER/example-skill
-```
-
-## 配置
-
-| 变量 | 必需 | 说明 |
-|---|---:|---|
-| `EXAMPLE_TOKEN` | 否 | 只在调用某 API 时需要 |
-
-## Troubleshooting
-
-| 问题 | 原因 | 解决 |
-|---|---|---|
-| `No valid skills found` | YAML frontmatter 不合法 | 使用 `description: |` 块标量 |
-| `gh: not authenticated` | GitHub CLI 未登录 | 运行 `gh auth login` |
-| 找不到 skill | 安装目录不一致 | 检查 `~/.agents/skills/<name>` |
-
-## 致谢
-
-列出依赖的开源工具、上游项目或参考方法。
-
-## License
-
-MIT
-```
+For public GitHub skills backed by a Tokenaissance repo, default to
+English-primary with a Chinese translation at `docs/README.zh-CN.md`. Use
+language-switch badges matching `fastagent-meta-skill/README.md`. For purely
+internal or Chinese-audience-only skills, Chinese-primary is acceptable.
 
 ## Web Or Visual Project Extras
 
@@ -159,6 +109,8 @@ explicitly asks for a minimal private package.
 - Keep internal agent constraints out of README unless they affect users.
 - If the skill is open source, replace private values with placeholders:
   `https://your-site.example`, `YOUR_TOKEN`, `OWNER/REPO`.
+- Reference `fastagent-meta-skill/README.md` when unsure about a section's
+  tone, depth, or placement.
 
 ## Bad Smells
 
@@ -166,6 +118,11 @@ explicitly asks for a minimal private package.
 - First paragraph says “This skill uses...” instead of “You can...”.
 - No install command.
 - No examples of what to say to the agent.
+- Missing capability comparison table when the skill replaces an existing tool
+  or workflow.
+- No badges or broken badge URLs.
 - Private hostnames, passwords, cookies, or local paths appear in public docs.
 - Troubleshooting is missing.
+- No credits/attribution for upstream projects.
+- No security/evidence boundary section.
 - Web/UI project has no screenshot.
