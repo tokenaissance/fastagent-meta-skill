@@ -185,18 +185,18 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 
 ## Recommended environment
 
-The scripts require **Python 3.11+** (`scripts/search_skillsmp.py` uses `datetime.UTC`) and **PyYAML** (`scripts/validate_skill.py`), so a single interpreter must provide both or the local gates split across interpreters. On macOS the default `python3` is often 3.9 (no `datetime.UTC`) while a standalone `python3.13` may lack PyYAML; a conda environment with Python 3.11+ plus PyYAML avoids the split. This machine's `google` conda env provides both:
+The scripts require **Python 3.11+** (`scripts/search_skillsmp.py` uses `datetime.UTC`) and **PyYAML** (`scripts/validate_skill.py`). Ensure a single interpreter provides both, or the local gates will be split across interpreters.
 
 ```bash
-conda run -n google python --version                                   # Python 3.13.11
-conda run -n google python -c "import yaml; print(yaml.__version__)"   # 6.0.3
+python3 --version                    # must be 3.11+
+python3 -c "import yaml"             # must not error
 ```
 
-Run the local checks with the same interpreter, e.g.:
+Once confirmed, run the local checks:
 
 ```bash
-conda run -n google python scripts/validate_skill.py .
-conda run -n google python scripts/release_check.py . --phase local --run-tests
+python3 scripts/validate_skill.py .
+python3 scripts/release_check.py . --phase local --run-tests
 ```
 
 ## Troubleshooting
