@@ -20,7 +20,7 @@ research the closest popular skills first, run trigger eval and safety checks, t
 
 It handles: **intent convergence → prior-art research → synthesize keep/adapt/reject/invent → skill design → trigger eval → package validation → README → secret scan → PR → Release → npx install verification**.
 
-**v2.8.3 local candidate verified:** 33/33 unit tests, 23/23 trigger cases, 0 package validation issues. Published evidence follows the [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) page.
+**v2.8.4 local candidate verified:** 33/33 unit tests, 23/23 trigger cases, 0 package validation issues. Published evidence follows the [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) page.
 
 ## Why I built this
 

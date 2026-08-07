@@ -2,7 +2,7 @@
 
 ## Result
 
-- Skill: `fastagent-meta-skill` 2.8.3
+- Skill: `fastagent-meta-skill` 2.8.4
 - Job: research, create, evaluate, package, govern, and safely publish reusable FastAgent skills through one self-contained workflow
 - Status: README showcase and privacy-safe Codex skill-history catalog prepared on a feature branch; public 2.8.1 evidence remains `missing evidence` until the release workflow completes
 
