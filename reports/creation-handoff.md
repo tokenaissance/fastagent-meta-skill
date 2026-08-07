@@ -1,9 +1,9 @@
-# Qiaomu Meta Skill Creation Handoff
+# FastAgent Meta Skill Creation Handoff
 
 ## Result
 
-- Skill: `qiaomu-meta-skill` 2.8.1
-- Job: research, create, evaluate, package, govern, and safely publish reusable Qiaomu skills through one self-contained workflow
+- Skill: `fastagent-meta-skill` 2.8.2
+- Job: research, create, evaluate, package, govern, and safely publish reusable FastAgent skills through one self-contained workflow
 - Status: README showcase and privacy-safe Codex skill-history catalog prepared on a feature branch; public 2.8.1 evidence remains `missing evidence` until the release workflow completes
 
 ## Reference skills studied
@@ -29,7 +29,7 @@
 ## Absorbed and rejected
 
 - `keep`: platform-neutral intent, trigger/output evaluation, evidence-bound claims, release gates, publisher README/Profile/License preparation and install verification.
-- `adapt`: compress a large Skill OS into a lighter Chinese-first Qiaomu workflow; source Qiaomu profile assets from the meta package itself; route every publication through review.
+- `adapt`: compress a large Skill OS into a lighter Chinese-first FastAgent workflow; source Qiaomu profile assets from the meta package itself; route every publication through review.
 - `reject`: copying upstream dashboards; multiple creator/discovery/publisher skills; popularity-only ranking; direct default-branch push; destructive local replacement; same-version rerelease; unsupported completion claims.
 - `invent`: resilient dual-catalog research, safe self-contained publisher, feature-branch-only new-repository bootstrap, PR state gate, release immutability, structured publication evidence and rollback-preserving local sync.
 
