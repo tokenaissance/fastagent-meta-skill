@@ -52,20 +52,60 @@ class PublishSkillTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             upstream = "https://github.com/example/upstream"
-            text = PUBLISH.generated_readme(
-                {
-                    "name": "fastagent-demo",
-                    "description": "把重复工作流整理成可验证的技能包。",
-                    "version": "1.0.0",
-                    "owner": "tokenaissance",
-                },
-                "tokenaissance",
-                "fastagent-demo",
-                upstream,
-            )
-            (root / "README.md").write_text(text, encoding="utf-8")
+            meta = {
+                "name": "fastagent-demo",
+                "description": "把重复工作流整理成可验证的技能包。",
+                "version": "1.0.0",
+                "owner": "tokenaissance",
+            }
+            en = PUBLISH.generated_readme(meta, "tokenaissance", "fastagent-demo", upstream)
+            zh = PUBLISH.generated_readme_zh(meta, "tokenaissance", "fastagent-demo", upstream)
+            (root / "README.md").write_text(en, encoding="utf-8")
+            zh_path = root / "docs" / "README.zh-CN.md"
+            zh_path.parent.mkdir(parents=True)
+            zh_path.write_text(zh, encoding="utf-8")
             self.assertEqual(PUBLISH.check_readme(root, upstream), [])
-            self.assertIn("validate_skill.py", text)
+            self.assertIn("validate_skill.py", en)
+            self.assertIn("docs/README.zh-CN.md", en)
+            self.assertIn("../README.md", zh)
+
+    def test_check_readme_requires_chinese_translation_by_default(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            upstream = "https://github.com/example/upstream"
+            meta = {
+                "name": "fastagent-demo",
+                "description": "把重复工作流整理成可验证的技能包。",
+                "version": "1.0.0",
+                "owner": "tokenaissance",
+            }
+            (root / "README.md").write_text(
+                PUBLISH.generated_readme(meta, "tokenaissance", "fastagent-demo", upstream),
+                encoding="utf-8",
+            )
+            failures = PUBLISH.check_readme(root, upstream)
+            self.assertIn("docs/README.zh-CN.md missing", failures)
+
+    def test_check_readme_readme_languages_zh_cn_only(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            upstream = "https://github.com/example/upstream"
+            (root / "manifest.json").write_text(
+                json.dumps({"readme_languages": ["zh-CN"]}),
+                encoding="utf-8",
+            )
+            meta = {
+                "name": "fastagent-demo",
+                "description": "把重复工作流整理成可验证的技能包。",
+                "version": "1.0.0",
+                "owner": "tokenaissance",
+            }
+            (root / "README.md").write_text(
+                PUBLISH.generated_readme_zh(meta, "tokenaissance", "fastagent-demo", upstream),
+                encoding="utf-8",
+            )
+            self.assertEqual(PUBLISH.check_readme(root, upstream), [])
+            self.assertEqual(PUBLISH.readme_languages(root), ["zh-CN"])
 
     def test_default_branch_push_is_rejected(self) -> None:
         for branch in ("", "main", "master"):
@@ -158,6 +198,7 @@ class PublishSkillTest(unittest.TestCase):
             self.assertEqual(result["failures"], [])
             self.assertTrue((root / "LICENSE").is_file())
             self.assertTrue((root / "README.md").is_file())
+            self.assertTrue((root / "docs" / "README.zh-CN.md").is_file())
 
     def test_local_sync_preserves_previous_copy_outside_skill_discovery(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

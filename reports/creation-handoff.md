@@ -2,9 +2,10 @@
 
 ## Result
 
-- Skill: `fastagent-meta-skill` 2.8.4
+- Skill: `fastagent-meta-skill` 2.9.0
 - Job: research, create, evaluate, package, govern, and safely publish reusable FastAgent skills through one self-contained workflow
-- Status: README showcase and privacy-safe Codex skill-history catalog prepared on a feature branch; public 2.8.1 evidence remains `missing evidence` until the release workflow completes
+- Status: v2.9.0 adds automatic bilingual README generation (`README.md` English + `docs/README.zh-CN.md` Chinese with cross-linked language badges) and a bilingual `check_readme` gate; prior 2.8.x evidence remains in git history
+- v2.9.0 README change: the publisher now generates the bilingual README pair when missing, `check_readme` requires the pair by default (override via `readme_languages: ["zh-CN"]`), and the GitHub README playbook documents the automated language decision
 
 ## Reference skills studied
 
