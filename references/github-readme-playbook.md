@@ -86,6 +86,16 @@ English-primary with a Chinese translation at `docs/README.zh-CN.md`. Use
 language-switch badges matching `fastagent-meta-skill/README.md`. For purely
 internal or Chinese-audience-only skills, Chinese-primary is acceptable.
 
+**The publisher now automates this.** When a README is missing,
+`scripts/publish_skill.py` generates the bilingual pair automatically:
+an English-primary `README.md` plus `docs/README.zh-CN.md`, with language
+badges that link to each other. Its `check_readme` gate requires the pair to
+exist and pass the content checks by default. Authors can declare
+`readme_languages: ["zh-CN"]` in `manifest.json` to require only a single
+Chinese README (the playbook's internal-skill exception); any other value or
+omitting the key keeps the English-primary bilingual default. Hand-written
+READMEs must still follow this layout so the gate passes.
+
 ## Web Or Visual Project Extras
 
 If a skill ships a website, visual tool, or generated media experience, README

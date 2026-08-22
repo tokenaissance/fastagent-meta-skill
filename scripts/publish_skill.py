@@ -179,15 +179,133 @@ SOFTWARE.
 
 
 def generated_readme(meta: dict[str, str], github_owner: str, repo: str, upstream: str) -> str:
-    first = re.split(r"[。.]", meta["description"], maxsplit=1)[0].strip()
+    description = meta["description"]
+    hook = re.split(r"[。.]", description, maxsplit=1)[0].strip()
     upstream_line = f"Upstream inspiration: {upstream}" if upstream else "Upstream inspiration: none declared"
     return f"""# {repo}
 
-> {first}。
+> {hook}.
 
+[![GitHub Release](https://img.shields.io/github/v/release/{github_owner}/{repo}?display_name=tag&sort=semver)](https://github.com/{github_owner}/{repo}/releases)
 [![Stars](https://img.shields.io/github/stars/{github_owner}/{repo}?style=flat-square)](https://github.com/{github_owner}/{repo}/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/{github_owner}/{repo}?style=flat-square)](https://github.com/{github_owner}/{repo}/commits/main)
-[![License](https://img.shields.io/github/license/{github_owner}/{repo}?style=flat-square)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
+[![English](https://img.shields.io/badge/Docs-English-black)](README.md)
+[![中文](https://img.shields.io/badge/Docs-%E4%B8%AD%E6%96%87-red)](docs/README.zh-CN.md)
+
+`{repo}` turns "{description}" into a package that is discoverable, reliably triggered, validated, and safe to publish.
+
+```bash
+npx skills add {github_owner}/{repo}
+```
+
+## Why this skill
+
+{description}
+
+## What makes it more than a plain prompt
+
+| Capability | Plain approach | {repo} |
+|---|---:|---:|
+| Turn a workflow into a reusable skill | copy a prompt into a file | ✓ |
+| Record keep / adapt / reject / invent against prior art | skip research | ✓ |
+| Test phrasings that should and should not trigger | guess | ✓ |
+| Validate layout, version, and context budget | trust it | ✓ |
+| Prepare README, LICENSE, and install verification | skip | ✓ |
+| Publish through feature branch, PR, Release, and clean install | push to main | ✓ |
+
+## Natural-language examples
+
+- "Use ${meta['name']} to turn this workflow into a reusable skill."
+- "Audit the inputs and boundaries first, then run ${meta['name']} end to end and verify."
+- "Follow the full ${meta['name']} workflow and do not skip any gate."
+
+## What it produces
+
+```text
+{repo}/
+├── SKILL.md                    # agent routing and minimal execution skeleton
+├── README.md                   # human-facing product page
+├── docs/README.zh-CN.md        # Chinese translation
+├── LICENSE                     # default MIT
+├── manifest.json               # version, author, platforms, and gates
+├── agents/interface.yaml       # cross-agent interface
+├── references/                 # long methods, judgment, and safety boundaries
+├── scripts/                    # repeatable verification and deterministic tools
+├── evals/trigger_cases.json    # should-trigger, should-not-trigger, near-neighbor cases
+└── reports/                    # Skill IR, research, eval, and release evidence
+```
+
+## One complete workflow
+
+1. **Intent**: confirm the repeated job, target users, inputs, outputs, and success criteria.
+2. **Research**: search prior art, verify sources, and record keep / adapt / reject / invent.
+3. **Package**: write a lean `SKILL.md`, long judgment in references, deterministic actions in scripts.
+4. **Eval**: test trigger boundaries first; add output or human eval when risk justifies it.
+5. **Release**: check version, README, license, secrets, and install entry; publish through a feature branch and PR.
+6. **Verify**: create a Release and complete a clean public install.
+
+## Installation and verification
+
+```bash
+npx skills add {github_owner}/{repo}
+test -f ~/.agents/skills/{meta['name']}/SKILL.md
+python3 ~/.agents/skills/{meta['name']}/scripts/validate_skill.py ~/.agents/skills/{meta['name']}
+```
+
+## Prerequisites
+
+- [ ] Node.js and npx installed: `node --version && npx --version`
+- [ ] Python 3 installed: `python3 --version`
+- [ ] Reviewed the skill's permissions and risk boundary
+
+## Output and risks
+
+Installing yields the complete skill package, including `SKILL.md`, `references/`, `scripts/`, `evals/`, and declared assets; the exact output follows the skill's Output Contract.
+
+- The skill operates within local files and explicit authorization; it should not silently expand its own permissions.
+- Review public files before publishing for secrets, cookies, private paths, or unverified claims.
+- Agent skills can execute code; review the source and permissions before installing.
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---|---|---|
+| `No valid skills found` | invalid YAML frontmatter | use a block scalar `description: |` and revalidate |
+| Skill not found | wrong install source or name | run `npx skills add {github_owner}/{repo} --list` |
+| Validation script fails | missing prerequisites or evidence | add what the error path names, then rerun |
+
+## Design philosophy
+
+A skill is closer to compiling personal experience into source code an agent can execute than to a fixed "correct answer". Install it, run one real task, then fork: delete rules that are not yours and add your own judgment, tools, style, and eval.
+
+## Credits and sources
+
+{upstream_line}
+
+## Security and evidence boundary
+
+- Public claims must match trigger, output, runtime, install, or human evidence actually present; without it, label `missing evidence`.
+- Publishing is an external write; it runs only when explicitly requested, through a feature branch, PR, Release, and clean public install.
+
+## License
+
+MIT (see LICENSE for copyright holders).
+"""
+
+
+def generated_readme_zh(meta: dict[str, str], github_owner: str, repo: str, upstream: str) -> str:
+    hook = re.split(r"[。.]", meta["description"], maxsplit=1)[0].strip()
+    upstream_line = f"上游灵感：{upstream}" if upstream else "上游灵感：未声明"
+    return f"""# {repo}
+
+> {hook}。
+
+[![English](https://img.shields.io/badge/Docs-English-black)](../README.md)
+[![中文](https://img.shields.io/badge/Docs-%E4%B8%AD%E6%96%87-red)](README.zh-CN.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](../LICENSE)
+
+`{repo}` 把「{meta['description']}」变成真正能被发现、能稳定触发、能通过验证、还能安全发布的 Skill。
 
 ```bash
 npx skills add {github_owner}/{repo}
@@ -195,13 +313,49 @@ npx skills add {github_owner}/{repo}
 
 ## 为什么值得用
 
-{meta["description"]}
+{meta['description']}
+
+## 能力对比
+
+| 能力 | 普通做法 | {repo} |
+|---|---:|---:|
+| 把工作流做成可复用的 Skill | 把提示词复制进文件 | ✓ |
+| 记录 keep / adapt / reject / invent | 跳过调研 | ✓ |
+| 测试该触发与不该触发的说法 | 靠猜 | ✓ |
+| 校验目录、版本与上下文预算 | 相信它 | ✓ |
+| 准备 README、LICENSE 与安装验证 | 跳过 | ✓ |
+| 经功能分支、PR、Release 与干净安装发布 | 直接推 main | ✓ |
 
 ## 你可以直接这样说
 
-- “使用 ${meta['name']} 处理这个任务。”
-- “先审计输入和边界，再按 ${meta['name']} 完成并验证。”
-- “按这个 skill 的完整工作流执行，不要跳过门禁。”
+- “使用 ${meta['name']} 把这个工作流做成可复用的 Skill。”
+- “先审计输入和边界，再按 ${meta['name']} 完整执行并验证。”
+- “按 ${meta['name']} 的完整工作流执行，不要跳过门禁。”
+
+## 它会产出什么
+
+```text
+{repo}/
+├── SKILL.md                    # Agent 路由与最小执行骨架
+├── README.md                   # 给人看的产品页
+├── docs/README.zh-CN.md        # 中文翻译
+├── LICENSE                     # 默认 MIT
+├── manifest.json               # 版本、作者、平台与门禁
+├── agents/interface.yaml       # 跨 Agent 接口
+├── references/                 # 长方法、判断与安全边界
+├── scripts/                    # 可重复验证与确定性工具
+├── evals/trigger_cases.json    # 应触发、不应触发、近邻场景
+└── reports/                    # Skill IR、研究、评测与发布证据
+```
+
+## 一套完整工作流
+
+1. **Intent**：确认重复任务、目标用户、输入、输出与成功标准。
+2. **Research**：先搜同类，验源，记录 keep / adapt / reject / invent。
+3. **Package**：写精简 `SKILL.md`，长判断放 references，确定性动作放 scripts。
+4. **Eval**：先测触发边界；风险需要时再补输出或人工评测。
+5. **Release**：检查版本、README、许可证、秘密与安装入口，经功能分支和 PR 发布。
+6. **Verify**：创建 Release，并在隔离环境完成干净安装。
 
 ## 安装与验证
 
@@ -217,11 +371,9 @@ python3 ~/.agents/skills/{meta['name']}/scripts/validate_skill.py ~/.agents/skil
 - [ ] 已安装 Python 3：`python3 --version`
 - [ ] 已阅读该 Skill 的权限与风险边界
 
-## 输出
+## 输出与风险
 
-安装后得到完整 Skill 包，包括 `SKILL.md`、`references/`、`scripts/`、`evals/` 和已声明的资产；具体输出以 Skill 的 Output Contract 为准。
-
-## 风险与边界
+安装后得到完整 Skill 包，包括 `SKILL.md`、`references/`、`scripts/`、`evals/` 与已声明的资产；具体输出以 Skill 的 Output Contract 为准。
 
 - Skill 以本地文件和明确授权为边界，不应静默扩大权限。
 - 发布前检查公开文件中没有密钥、Cookie、私有路径或未经验证的结果声明。
@@ -235,13 +387,22 @@ python3 ~/.agents/skills/{meta['name']}/scripts/validate_skill.py ~/.agents/skil
 | 找不到 Skill | 安装源或名称错误 | 运行 `npx skills add {github_owner}/{repo} --list` |
 | 验证脚本失败 | 前置依赖或证据文件缺失 | 按错误路径补齐后重新运行 |
 
+## 设计哲学
+
+Skill 更接近把个人经验编译成 Agent 可以执行的源代码，而不是一套不可修改的「标准答案」。先安装、跑一个真实任务，再 fork：删除不属于你的规则，加入你自己的判断、工具、风格与评测。
+
 ## 致谢
 
 {upstream_line}
 
+## 安全与证据边界
+
+- 公开声明必须匹配实际存在的触发、输出、运行时、安装或人工证据；没有就标记 `missing evidence`。
+- 发布是外部写操作，只有明确要求时才执行，并通过功能分支、PR、Release 与公开安装验证。
+
 ## License
 
-MIT (see LICENSE for copyright holders)
+MIT（版权持有者见 LICENSE）。
 """
 
 
@@ -256,22 +417,73 @@ PLACEHOLDERS = (
 )
 
 
-def check_readme(root: Path, upstream: str) -> list[str]:
-    path = root / "README.md"
-    if not path.is_file():
-        return ["README.md missing"]
-    text = path.read_text(encoding="utf-8")
-    failures = [f"README placeholder found: {pattern}" for pattern in PLACEHOLDERS if re.search(pattern, text, re.I)]
-    requirements = {
+def readme_languages(root: Path) -> list[str]:
+    """Languages a package must ship READMEs for.
+
+    Defaults to English-primary bilingual (README.md + docs/README.zh-CN.md).
+    `manifest.json` may override with `readme_languages` (e.g. ["zh-CN"] for a
+    purely internal Chinese skill, per the GitHub README playbook exception).
+    """
+    manifest_path = root / "manifest.json"
+    if manifest_path.is_file():
+        try:
+            declared = load_json(manifest_path).get("readme_languages")
+            if isinstance(declared, list):
+                normalized = [str(item).strip() for item in declared if str(item).strip()]
+                if normalized:
+                    return normalized
+        except (ValueError, json.JSONDecodeError):
+            pass
+    return ["en", "zh-CN"]
+
+
+def _readme_requirements(text: str, upstream: str) -> dict[str, bool]:
+    return {
         "install command": "npx skills add" in text,
-        "natural-language examples": "你可以直接这样说" in text or "Natural-language examples" in text,
+        "natural-language examples": "Natural-language examples" in text or "你可以直接这样说" in text,
         "verification command": "validate_skill.py" in text,
         "prerequisite checklist": "- [ ]" in text,
         "troubleshooting": "Troubleshooting" in text,
         "license": "## License" in text or "## 许可证" in text,
         "upstream credit": not upstream or upstream in text,
     }
-    failures.extend(f"README missing {label}" for label, passed in requirements.items() if not passed)
+
+
+def _check_readme_file(path: Path, label: str, upstream: str) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    failures = [f"{label} placeholder found: {pattern}" for pattern in PLACEHOLDERS if re.search(pattern, text, re.I)]
+    requirements = _readme_requirements(text, upstream)
+    failures.extend(f"{label} missing {item}" for item, passed in requirements.items() if not passed)
+    return failures
+
+
+def check_readme(root: Path, upstream: str) -> list[str]:
+    languages = readme_languages(root)
+    english = "en" in languages
+    chinese_only = "zh-CN" in languages and not english
+    failures: list[str] = []
+
+    if chinese_only:
+        path = root / "README.md"
+        if not path.is_file():
+            return ["README.md missing"]
+        failures.extend(_check_readme_file(path, "README", upstream))
+        return failures
+
+    en_path = root / "README.md"
+    zh_path = root / "docs" / "README.zh-CN.md"
+    if not en_path.is_file():
+        failures.append("README.md missing")
+    if "zh-CN" in languages and not zh_path.is_file():
+        failures.append("docs/README.zh-CN.md missing")
+    if en_path.is_file():
+        failures.extend(_check_readme_file(en_path, "README", upstream))
+        if "zh-CN" in languages and "docs/README.zh-CN.md" not in en_path.read_text(encoding="utf-8"):
+            failures.append("README.md language badge does not link to docs/README.zh-CN.md")
+    if zh_path.is_file():
+        failures.extend(_check_readme_file(zh_path, "README.zh-CN.md", upstream))
+        if "../README.md" not in zh_path.read_text(encoding="utf-8"):
+            failures.append("docs/README.zh-CN.md language badge does not link back to ../README.md")
     return failures
 
 
@@ -289,8 +501,16 @@ def prepare_package(
     readme = root / "README.md"
     if not readme.exists():
         changes.append("README.md")
+        changes.append("docs/README.zh-CN.md")
         if write:
-            readme.write_text(generated_readme(meta, github_owner, repo, upstream), encoding="utf-8")
+            en_meta = dict(meta)
+            description_en = str(manifest.get("description_en", "")).strip()
+            if description_en:
+                en_meta["description"] = description_en
+            readme.write_text(generated_readme(en_meta, github_owner, repo, upstream), encoding="utf-8")
+            zh_path = root / "docs" / "README.zh-CN.md"
+            zh_path.parent.mkdir(parents=True, exist_ok=True)
+            zh_path.write_text(generated_readme_zh(meta, github_owner, repo, upstream), encoding="utf-8")
     failures = [] if not write and not readme.exists() else check_readme(root, upstream)
     return {"changes": sorted(set(changes)), "failures": failures}
 

@@ -17,7 +17,7 @@
 
 它会自己完成：**需求收敛 → 同类检索 → 提炼 keep/adapt/reject/invent → Skill 设计 → 触发评测 → 包校验 → README → Secret 扫描 → PR → Release → npx 安装验证**。
 
-**v2.8.1 本地候选已验证：** 33/33 单元测试、23/23 触发评测、0 个包校验问题。公开发布证据以 [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) 为准。
+**v2.9.0 本地候选已验证：** 35/35 单元测试、23/23 触发评测、0 个包校验问题。公开发布证据以 [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) 为准。
 
 ## 为什么做这个
 
@@ -45,6 +45,7 @@ Anthropic 与 OpenAI 的官方 `skill-creator` 奠定了很好的基础。本元
 | 区分设计优势、已验证优势和待验证假设 | | ✓ |
 | 校验目录、版本、上下文预算与递归发现 | | ✓ |
 | 准备 README 与 MIT License | | ✓ |
+| 自动生成双语 README（英文 + 中文） | | ✓ |
 | Secret / API 泄露扫描 | | ✓ |
 | 功能分支、PR、检查、Release | | ✓ |
 | `npx skills add` 公开发现与隔离安装验证 | | ✓ |

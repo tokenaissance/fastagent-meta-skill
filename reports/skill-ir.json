@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0-fastagent-lite",
-  "generated_at": "2026-08-07",
+  "generated_at": "2026-08-22",
   "package": {
     "name": "fastagent-meta-skill",
-    "version": "2.8.4",
+    "version": "2.9.0",
     "owner": "Tokenaissance",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
@@ -16,8 +16,8 @@
     }
   },
   "intent": {
-    "description": "Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation, GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.\n",
-    "job_to_be_done": "Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation, GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.\n",
+    "description": "Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation (including automatic bilingual English + Chinese README generation), GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.\n",
+    "job_to_be_done": "Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation (including automatic bilingual English + Chinese README generation), GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.\n",
     "target_users": [
       "fastagent operator"
     ],
