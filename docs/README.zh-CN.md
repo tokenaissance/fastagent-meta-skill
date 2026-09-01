@@ -17,7 +17,7 @@
 
 它会自己完成：**需求收敛 → 同类检索 → 提炼 keep/adapt/reject/invent → Skill 设计 → 触发评测 → 包校验 → README → Secret 扫描 → PR → Release → npx 安装验证**。
 
-**v2.9.0 本地候选已验证：** 35/35 单元测试、23/23 触发评测、0 个包校验问题。公开发布证据以 [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) 为准。
+**v2.10.0 本地候选已验证：** 35/35 单元测试、23/23 触发评测、0 个包校验问题。公开发布证据以 [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) 为准。
 
 ## 为什么做这个
 

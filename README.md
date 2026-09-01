@@ -20,7 +20,7 @@ research the closest popular skills first, run trigger eval and safety checks, t
 
 It handles: **intent convergence → prior-art research → synthesize keep/adapt/reject/invent → skill design → trigger eval → package validation → README → secret scan → PR → Release → npx install verification**.
 
-**v2.9.0 local candidate verified:** 35/35 unit tests, 23/23 trigger cases, 0 package validation issues. Published evidence follows the [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) page.
+**v2.10.0 local candidate verified:** 35/35 unit tests, 23/23 trigger cases, 0 package validation issues. Published evidence follows the [Releases](https://github.com/tokenaissance/fastagent-meta-skill/releases) page.
 
 ## Why I built this
 
@@ -103,6 +103,10 @@ When this skill runs in a FastAgent agent, new skills are persisted with the `wr
 ```
 
 A new skill becomes visible to the LLM on the **next turn**, not mid-turn.
+
+The SKILL.md format FastAgent actually parses — frontmatter fields,
+`metadata.fastagent` gating, `{baseDir}`, the <500-line budget, and skill
+directory precedence — is captured in [FastAgent Runtime Skill Guide](references/fastagent-runtime-guide.md).
 
 ## Installation
 

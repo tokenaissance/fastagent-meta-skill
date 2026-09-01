@@ -4,7 +4,7 @@ description: |
   Research, create, improve, migrate, evaluate, package, install-check, govern, and safely publish fastagent agent skills from workflows, prompts, transcripts, docs, SOPs, runbooks, scripts, or notes. Use for new or existing skills, prior-art synthesis, routing/trigger boundaries, trigger or output evals, Skill IR, release gates, README preparation (including automatic bilingual English + Chinese README generation), GitHub repository and pull-request publication, versioned Releases, clean npx installation, team reuse, and create-and-publish flows. The publication path is self-contained and forbids direct default-branch pushes. Exclude one-off summaries, translations, ordinary docs, non-skill package publishing, and tasks that explicitly should not become a skill.
 metadata:
   author: Tokenaissance
-  version: "2.9.0"
+  version: "2.10.0"
   upstream_inspiration: joeseesun/qiaomu-meta-skill; yaojingang/yao-meta-skill; joeseesun/qiaomu-skill-publisher
 ---
 
@@ -40,6 +40,12 @@ restart.
 Note: the new skill becomes visible to the LLM on the **next turn**, not
 mid-turn. Tell the user something like "skill saved — invoke it on your
 next message" so they don't expect immediate use.
+
+For the SKILL.md format FastAgent actually parses — frontmatter fields,
+`metadata.fastagent` gating, `{baseDir}`, the <500-line budget, and the
+skill directory precedence — follow [FastAgent Runtime Skill Guide]
+(references/fastagent-runtime-guide.md). Apply it whenever `fastagent` is a
+target platform.
 
 The rest of this document was written for local Claude Code / Codex and
 talks about absolute paths, `/tmp/` staging, `npx` installs, and GitHub
@@ -188,6 +194,6 @@ Detailed CLI and safety decisions: [Self-Contained Skill Publishing](references/
 
 ## Reference Map
 
-- Design: [Skill Engineering Method](references/skill-engineering-method.md), [Skill Content Method](references/skill-content-method.md), [Skill Archetypes](references/skill-archetypes.md), [Intent Dialogue](references/intent-dialogue.md), [Non-Skill Decision Tree](references/non-skill-decision-tree.md)
+- Design: [Skill Engineering Method](references/skill-engineering-method.md), [Skill Content Method](references/skill-content-method.md), [Skill Archetypes](references/skill-archetypes.md), [Intent Dialogue](references/intent-dialogue.md), [Non-Skill Decision Tree](references/non-skill-decision-tree.md), [FastAgent Runtime Skill Guide](references/fastagent-runtime-guide.md)
 - Evidence: [Eval Playbook](references/eval-playbook.md), [Output Eval](references/output-eval-method.md), [Skill IR](references/skill-ir-method.md), [Governance](references/governance.md)
 - Release: [Self-Contained Publishing](references/publishing.md), [Review And Release Gates](references/review-release-gates.md), [GitHub README](references/github-readme-playbook.md), [SkillOps](references/skillops-loop.md)

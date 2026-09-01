@@ -2,10 +2,10 @@
 
 ## Result
 
-- Skill: `fastagent-meta-skill` 2.9.0
+- Skill: `fastagent-meta-skill` 2.10.0
 - Job: research, create, evaluate, package, govern, and safely publish reusable FastAgent skills through one self-contained workflow
-- Status: v2.9.0 adds automatic bilingual README generation (`README.md` English + `docs/README.zh-CN.md` Chinese with cross-linked language badges) and a bilingual `check_readme` gate; prior 2.8.x evidence remains in git history
-- v2.9.0 README change: the publisher now generates the bilingual README pair when missing, `check_readme` requires the pair by default (override via `readme_languages: ["zh-CN"]`), and the GitHub README playbook documents the automated language decision
+- Status: v2.10.0 adds the FastAgent Runtime Skill Guide reference (`references/fastagent-runtime-guide.md`) capturing the runtime's SKILL.md format contract — frontmatter fields, `metadata.fastagent` gating, `{baseDir}`, the <500-line budget, and skill directory precedence — sourced from `fastagent/skills/fastagent-skill-guide/SKILL.md`; prior 2.9.x evidence remains in git history
+- v2.10.0 change: SKILL.md and README now route fastagent-targeted packaging through the runtime guide, so wrapped skills conform to what the FastAgent SkillsLoader actually parses (validated end-to-end on the ai-signal rewrap: `metadata.fastagent` frontmatter + `~/.fastagent/skills/<name>/` user-layer install)
 
 ## Reference skills studied
 
