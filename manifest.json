@@ -1,8 +1,8 @@
 {
   "name": "fastagent-meta-skill",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "owner": "Tokenaissance",
-  "updated_at": "2026-08-22",
+  "updated_at": "2026-09-01",
   "status": "active",
   "maturity_tier": "governed",
   "lifecycle_stage": "library",
